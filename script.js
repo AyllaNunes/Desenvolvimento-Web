@@ -1,39 +1,21 @@
-const inputNome = document.getElementById('nome');
-const inputEmail = document.getElementById('email');
-const inputSenha = document.getElementById('senha');
-const InputConfirma = document.getElementById('confirmar-senha');
+const formLogin = document.getElementById('form-login');
+const inputEmail=document.getElementById('email');
+const inputSenha=document.getElementById('senha');
+const btnLogin=document.getElementById('btn-login');
 
-const reqTamanho = document.getElementById('req-tamanho');
-const reqMaiuscula = document.getElementById('req-maiuscula');
-const reqNumero = document.getElementById('req-Numero');
-const reqEspecial = document.getElementById('req-especial');
+inputEmail.addEventListener('input',() => {
+  if(inputEmail.checkvalidity() && inputEmail.value.trim() !==''){
+    inputEmail.classList.add('campo-valido');
+  } else {
+       inputSenha.classList.remove('campo-valido');
+  }
+});
 
-inputSenha.addEventListener('input',() =>{
-    const valor = inputSenha.value;
-    const temTamanho = valor.length >= 8;
-    atualizarRequisito(reqTamanho,temTamanho);
-
-    
-    const temMaiuscula= /[A-Z]/.test(valor);
-    atualizarRequisito(reqMaiuscula,temMaiuscula);
-
-const temNumero = /[0-9]/.test(valor);
-atualizarRequisito(reqNumero,temNumero);
-
-const temEspecial =/[!@#$%^&*(),.?":{}|<>]/.test(valor);
-atualizarRequisito(reqEspecial,temEspecial);
-
-if (temTamanho && temMaiuscula && temNumero && temEspecial){
-     inputSenha.classList.add('campo-valido');
-} else {
+inputSenha.addEventListener('input',() => {
+   if(inputSenha.value.length >= 8){
+    inputSenha.classList.add('campo-valido');
+   } else { 
     inputSenha.classList.remove('campo-valido');
-}
-});   
+   }
+});
 
-function atualizarRequisito(elemento,condicao)
- {if (condicao){
-    elemento.classList.add('valido');}
-     else {
-elemento.classList.remove('valido');
-}
-} 
